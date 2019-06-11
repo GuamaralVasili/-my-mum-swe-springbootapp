@@ -1,0 +1,32 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/layout}">
+<body>
+	<th:block layout:fragment="content">
+		<div style="margin-top: 30px">
+			<h5>Book List</h5>
+			<br />
+			<table class="table">
+				<thead>
+					<th>Id</th>
+					<th>Title</th>
+					<th>Fee</th>
+					<th>Published Date</th>
+					<th></th>
+				</thead>
+				<tbody>
+					<tr th:each="book : ${books}">
+						<td th:text="${book.bookId}"></td>
+						<td th:text="${book.title}"></td>
+						<td th:text="${book.fee}"></td>
+						<td th:text="${book.datePublished}"></td>
+						<td><a th:href="@{'/book/' + ${book.bookId}}">Edit</a>&nbsp;
+							<a th:href="@{'/book/delete/' + ${book.bookId}}">Delete</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</th:block>
+</body>
+</html>

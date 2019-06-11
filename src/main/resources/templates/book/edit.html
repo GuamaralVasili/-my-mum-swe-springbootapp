@@ -1,0 +1,60 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/layout}">
+<body>
+	<th:block layout:fragment="content">
+		<div id="formContent" style="margin-top: 30px">
+			<h5>Book Add/Edit</h5>
+			<br />
+			<form class="form-horizontal" action="/book/edit" method="POST"
+				th:object="${book}">
+				<label th:if="${#fields.hasErrors('*')}" class="alert-danger"></label>
+
+				<input type="hidden" name="bookId" th:value="${book.bookId}" />
+
+				<div class="form-group">
+					<div class="row">
+						<label class="control-label col-md-1" for="title">Title:</label>
+						<div class="col-md-4">
+							<input type="text" class="form-control" id="title" name="title"
+								th:field="*{title}" th:value="${book.title}">
+						</div>
+						<label th:if="${#fields.hasErrors('title')}" th:errors="*{title}"
+							class="alert-danger"></label>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="row">
+						<label class="control-label col-md-1" for="fee">Fee ($):</label>
+						<div class="col-md-4">
+							<input type="number" class="form-control" id="fee" name="fee"
+								th:field="*{fee}" th:value="${book.fee}">
+						</div>
+						<label th:if="${#fields.hasErrors('fee')}" th:errors="*{fee}"
+							class="alert-danger"></label>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<label class="control-label col-md-1" for="datePublished">Published
+							Date:</label>
+						<div class="col-md-4">
+							<input type="date" class="form-control" id="datePublished"
+								name="datePublished" th:field="*{datePublished}"
+								th:value="${book.datePublished}">
+						</div>
+						<label th:if="${#fields.hasErrors('datePublished')}"
+							th:errors="*{datePublished}" class="alert-danger"></label>
+					</div>
+				</div>
+				<div id="formFooter" class="form-group" style="margin-left: 380px">
+					<button type="submit" style="width: 70px"
+						class="btn btn-primary form-control">SAVE</button>
+				</div>
+			</form>
+		</div>
+	</th:block>
+</body>
+</html>
